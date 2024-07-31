@@ -11,7 +11,7 @@ const App = () => {
   console.log('Rendering App');
   return (
     <Router>
-      <div>
+      <div justify-center>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
