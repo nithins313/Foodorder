@@ -1,16 +1,24 @@
-// src/components/Footer.jsx
-import React from "react";
+// src/components/Footer.js
+import React from 'react';
+import styled from 'styled-components';
 
 const Footer = () => {
   return (
-    <footer className="flex justify-end">
-      <p>&copy; 2024 Foodorder. All rights reserved.</p>
-      <p>
-        This was developed by <a href="">Nithin</a>,<a href="">Hariharan</a>&{" "}
-        <a href="">Dharanesh</a>
-      </p>
-    </footer>
+    <FooterContainer>
+      <FooterText>© 2024 Foodorder. All Rights Reserved.</FooterText>
+    </FooterContainer>
   );
 };
+
+const FooterContainer = styled.footer`
+  padding: 20px;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+`;
+
+const FooterText = styled.p`
+  font-size: 1em;
+`;
 
 export default Footer;
