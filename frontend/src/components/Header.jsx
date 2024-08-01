@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <header>
+    <header className='inline-block m-0'>
       <nav>
         <ul>
           <li><Link to="/">Home</Link></li>

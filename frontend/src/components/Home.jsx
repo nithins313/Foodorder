@@ -1,14 +1,7 @@
-// src/components/Home.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  // Sample data for restaurants, replace with actual data
-  const restaurants = [
-    { id: 1, name: 'Restaurant A' },
-    { id: 2, name: 'Restaurant B' },
-    { id: 3, name: 'Restaurant C' },
-  ];
 
   return (
     <div>
