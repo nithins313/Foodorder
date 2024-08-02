@@ -17,6 +17,7 @@ const connect = async () => {
   } catch (err) {
     console.log("eroor", err);
   }
+  pool.releaseConnection();
 };
 export { connect };
 export default pool;
