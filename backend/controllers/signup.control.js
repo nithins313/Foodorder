@@ -10,11 +10,7 @@ const Validate = async (js) => {
       if (regexusr.test(js.username)) {
         if (regexpass.test(js.password)) {
           if (regexemail.test(js.email)) {
-            if (/^[0-9]{10}$/.test(js.phoneno)) {
-              if (/^[A-Za-z0-9\.\-, ]*$/.test(js.address)) {
-                return true;
-              }
-            }
+            return true;
           }
         }
       }
@@ -26,13 +22,13 @@ const validusr = async (username) => {
   const [results] = await pool.query("select * from user where usrname = ? ", [
     username,
   ]);
-
   if (results.length > 0) return true;
   else return false;
 };
 const signup = async (res, rep) => {
   try {
     if (await Validate(res.body)) {
+      
       if (!(await validusr(res.body.username))) {
         const username = res.body.username;
         const password = res.body.password;
@@ -44,7 +40,6 @@ const signup = async (res, rep) => {
           "insert into user (usrname,password,phoneno,email,address) values(?,?,?,?,?)",
           [username, password, phoneno, email, address]
         );
-        console.log(results);
         const token = jwt.sign(
           {
             username: { username },
@@ -57,11 +52,13 @@ const signup = async (res, rep) => {
           .cookie("cookie", token, {
             httpOnly: true,
             secure: true,
+            sameSite: "None",
             maxAge: 24 * 60 * 60 * 1000,
             path: "/",
           })
           .status(200)
           .json({
+            cookie: token,
             message: "Access granted",
           });
       } else {

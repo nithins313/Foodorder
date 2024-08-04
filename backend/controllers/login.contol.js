@@ -28,7 +28,6 @@ const login = async (res, rep) => {
       );
       if (results.length > 0) {
         if (results[0].password === password) {
-          console.log("hi");
           const token = jwt.sign(
             {
               username: { username },
@@ -41,11 +40,13 @@ const login = async (res, rep) => {
             .cookie("cookie", token, {
               httpOnly: true,
               secure: true,
+              sameSite: "Lax",
               maxAge: 24 * 60 * 60 * 1000,
               path: "/",
             })
             .status(200)
             .json({
+              cookie: token,
               message: "Access granted",
             });
         } else {

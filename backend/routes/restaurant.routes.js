@@ -3,5 +3,5 @@ import foods from "../controllers/foods.control.js";
 import restaurant from "../controllers/restaurant.control.js";
 const routes = express.Router();
 routes.get("/restaurant", restaurant);
-routes.get("/foods", foods);
+routes.get("/dishs", foods);
 export default routes;
