@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+
 const RestaurantCard = ({ resData }) => {
   const { name, rid } = resData;
   const navigate = useNavigate();
@@ -9,20 +10,21 @@ const RestaurantCard = ({ resData }) => {
   };
 
   return (
-    <div className="inline-block w-[250px] mx-2 my-1 items-center p-2 text-sm border rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+    <div className="border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white">
       <button onClick={handle} className="w-full">
-        <div className="relative mb-2">
+        <div className="relative">
           <img
-            className="rounded-2xl w-full h-[200px] object-cover"
+            className="rounded-t-lg w-full h-[200px] object-cover"
             src={`/image/${rid}/1.jpg`}
-            alt="res-img"
+            alt={`${name}`}
           />
         </div>
-        <h3 className="font-semibold text-lg truncate overflow-hidden whitespace-nowrap">
-          {name}
-        </h3>
+        <div className="p-4">
+          <h3 className="font-semibold text-lg truncate">{name}</h3>
+        </div>
       </button>
     </div>
   );
 };
+
 export default RestaurantCard;

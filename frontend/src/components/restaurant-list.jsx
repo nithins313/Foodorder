@@ -13,8 +13,8 @@ const RestaurantList = () => {
 
   return (
     <div className="w-[1100px] mx-auto">
-      <div>
-        <h1 className="text-3xl my-3">Restaurants in Coimbatore</h1>
+      <h1 className="text-3xl font-bold text-center my-8">Restaurants in Coimbatore</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {restaurants.map((restaurant) => (
           <RestaurantCard
             key={restaurant.restaurantid}

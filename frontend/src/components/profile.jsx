@@ -38,59 +38,53 @@ const Profile = () => {
     fetchData();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-
-  if (!data) return <p>No data available</p>;
+  if (loading) return <p className="text-center text-white">Loading...</p>;
+  if (error) return <p className="text-center text-red-500">Error: {error}</p>;
+  if (!data) return <p className="text-center text-white">No data available</p>;
 
   const { user, orders } = data;
 
   return (
     <>
       <Header />
-      <div className="p-6 max-w[1000px] inline mx-auto">
+      <div className="max-w-[1000px] mx-auto p-6 text-white">
         <div className="mb-8">
-          <h1 className="text-2xl font-bold mb-4">User Details</h1>
-          <div className="bg-gray-100 p-4 rounded shadow-md">
-            <p>
+          <h1 className="text-3xl font-bold mb-4">User Details</h1>
+          <div className="bg-gray-800 p-4 rounded shadow-md">
+            <p className="mb-2">
               <span className="font-semibold">Username:</span> {user.username}
             </p>
-            <p>
+            <p className="mb-2">
               <span className="font-semibold">Phone No:</span> {user.phoneNo}
             </p>
-            <p>
+            <p className="mb-2">
               <span className="font-semibold">Email:</span> {user.email}
             </p>
-            <p>
+            <p className="mb-2">
               <span className="font-semibold">Address:</span> {user.address}
             </p>
           </div>
         </div>
         <div>
-          <h1 className="text-2xl font-bold mb-4">Order History</h1>
+          <h1 className="text-3xl font-bold mb-4">Order History</h1>
           {orders.map((order) => (
             <div key={order.orderId} className="mb-6">
-              <div className="bg-blue-100 p-4 rounded shadow-md mb-2">
-                <h2 className="text-xl font-semibold">
-                  Order ID: {order.orderId}
-                </h2>
-                <p className="text-gray-600">Items:</p>
+              <div className="bg-gray-700 p-4 rounded shadow-md mb-2">
+                <h2 className="text-xl font-semibold">Order ID: {order.orderId}</h2>
+                <p className="text-gray-300">Items:</p>
               </div>
               <ul className="list-disc pl-5">
                 {order.items.map((item) => (
                   <li key={item.id} className="mb-2">
-                    <div className="bg-white p-2 rounded shadow-sm">
-                      <p>
-                        <span className="font-semibold">Item Name:</span>{" "}
-                        {item.itemName}
+                    <div className="bg-gray-800 p-2 rounded shadow-sm">
+                      <p className="mb-1">
+                        <span className="font-semibold">Item Name:</span> {item.itemName}
                       </p>
-                      <p>
-                        <span className="font-semibold">Quantity:</span>{" "}
-                        {item.quantity}
+                      <p className="mb-1">
+                        <span className="font-semibold">Quantity:</span> {item.quantity}
                       </p>
-                      <p>
-                        <span className="font-semibold">Price:</span> $
-                        {item.price.toFixed(2)}
+                      <p className="mb-1">
+                        <span className="font-semibold">Price:</span> ₹{item.price.toFixed(2)}
                       </p>
                     </div>
                   </li>

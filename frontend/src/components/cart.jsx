@@ -5,7 +5,8 @@ import Header from "./Header";
 const Cart = () => {
   const { cart, addToCart, removeFromCart, serCart } = useCart();
   const cartItems = Object.keys(cart).map((key) => cart[key]);
-  const [placed, setplaced] = useState(false);
+  const [placed, setPlaced] = useState(false);
+
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => {
       const itemTotal = item.price * item.quantity;
@@ -32,7 +33,7 @@ const Cart = () => {
       });
 
       if (response.ok) {
-        setplaced(true);
+        setPlaced(true);
         serCart({});
       } else {
         alert("Failed to place order. Please try again.");
@@ -46,16 +47,16 @@ const Cart = () => {
   return (
     <>
       <Header />
-      <div className="inline w-1000px justify-center items-center m-auto p-4">
-        <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
+      <div className="flex flex-col items-center justify-center p-8 mx-auto w-3/4">
+        <h2 className="text-3xl font-bold mb-6">Shopping Cart</h2>
         {cartItems.length === 0 || placed ? (
           <p className="text-gray-600">Your cart is empty.</p>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-4 w-full">
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between p-4 bg-white shadow-md rounded-lg"
+                className="flex items-center justify-between p-4 bg-white shadow-lg rounded-lg"
               >
                 <img
                   src={"/image/" + item.image}
@@ -88,20 +89,22 @@ const Cart = () => {
                 </p>
               </div>
             ))}
-            <div className="flex justify-end items-center mt-4">
-              <p className="text-xl font-bold">
+            <div className="flex justify-end items-center mt-6">
+              <p className="text-2xl font-bold">
                 Total: ₹{calculateTotalPrice().toFixed(2)}
               </p>
             </div>
             <button
               onClick={handleOrder}
-              className="px-4 py-2 bg-blue-500 text-white rounded mt-4"
+              className="w-full bg-black text-white rounded-full py-2 mt-4 hover:bg-gray-800 transition"
             >
               Place Order
             </button>
           </div>
         )}
-        {placed && <p className="text-3xl">Order placed successfully</p>}
+        {placed && (
+          <p className="text-2xl mt-4 text-green-600">Order placed successfully</p>
+        )}
       </div>
     </>
   );
